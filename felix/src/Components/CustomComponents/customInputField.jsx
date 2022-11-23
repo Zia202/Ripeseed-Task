@@ -43,6 +43,7 @@ const CustomInputField = ({
   children,
   onChange,
   placeholder,
+  value,
 }) => {
   return (
     <CustomInput
@@ -52,6 +53,7 @@ const CustomInputField = ({
       size={size}
       onChange={onChange}
       placeholder={placeholder}
+      value={value}
     >
       {children}
     </CustomInput>

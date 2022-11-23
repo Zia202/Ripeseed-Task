@@ -6,7 +6,7 @@ const ButtonComponent = styled.button`
   box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.16);
   border: 1px solid transparent !important;
   cursor: pointer;
-  height: 50px;
+  height: 48px;
   font-weight: bold !important;
   outline: none !important;
   text-align: center !important;

@@ -4,7 +4,7 @@ export default makeStyles({
     display: "flex",
     justifyContent: "end",
     color: "#16445E",
-    fontWeight: "bold",
+    fontWeight: "bolder !important",
     fontStyle: "italic",
     marginTop: "10px",
     fontWeight: "bolder !important",

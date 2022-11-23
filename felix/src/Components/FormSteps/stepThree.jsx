@@ -1,7 +1,6 @@
-import React, { forwardRef, useImperativeHandle } from "react";
-import { Stack, Box, Grid, Typography } from "@mui/material";
+import React, { useState, forwardRef, useImperativeHandle } from "react";
+import { Stack, Box, Grid, Typography, Chip } from "@mui/material";
 import CustomInputField from "../CustomComponents/customInputField";
-import Button from "../CustomComponents/button";
 import { useFormik } from "formik";
 import useStyles from "../../styles/stepThree";
 
@@ -11,6 +10,11 @@ const initialValues = {
 };
 
 const StepThree = forwardRef((props, ref) => {
+  const [survey, setSurvey] = useState();
+  const handleSurvey = (value) => {
+    setSurvey(value);
+  };
+  console.log("Survey: " + survey);
   const handleFormSubmit = (values) => {
     console.log("Step three Values", { values });
     props.getStepThreeData(values);
@@ -86,15 +90,24 @@ const StepThree = forwardRef((props, ref) => {
               Are you available for survey + early product releases?
             </Typography>
             <Stack direction="row" spacing={1}>
-              <Button variant="secondary" color="dark" size="sm">
-                Yes
-              </Button>
-              <Button variant="secondary" color="dark" size="md">
-                Maybe
-              </Button>
-              <Button variant="secondary" color="dark" size="sm">
-                No
-              </Button>
+              <Chip
+                label="Yes"
+                className={survey === "yes" ? classes.chipClick : classes.chip}
+                onClick={() => handleSurvey("yes")}
+              />
+              <Chip
+                label="Maybe"
+                className={
+                  survey === "maybe" ? classes.chipClick : classes.chip
+                }
+                onClick={() => handleSurvey("maybe")}
+              />
+
+              <Chip
+                label="No"
+                className={survey === "no" ? classes.chipClick : classes.chip}
+                onClick={() => handleSurvey("no")}
+              />
             </Stack>
           </Box>
         </Stack>

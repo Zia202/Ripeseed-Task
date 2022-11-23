@@ -1,10 +1,36 @@
-import React from "react";
-import { Stack, Box, Grid, Typography } from "@mui/material";
-import CustomInputField from "../CustomComponents/customInputField";
-import Button from "../CustomComponents/button";
+import { useState } from "react";
+import { Stack, Box, Grid, Typography, Chip } from "@mui/material";
 import useStyles from "../../styles/stepTwo.js";
-const StepTwo = () => {
+const StepTwo = ({ parentData, getStepTwoData }) => {
   const classes = useStyles();
+  console.log({ parentData });
+  const [data, setData] = useState({
+    airpod: parentData.airpod || "",
+    device: parentData.device || "",
+    spotify: parentData.spotify || "",
+  });
+  const handleDevice = (value) => {
+    setData({
+      ...data,
+      device: value,
+    });
+    getStepTwoData("device", value);
+  };
+  const handleAirpod = (value) => {
+    setData({
+      ...data,
+      airpod: value,
+    });
+    getStepTwoData("airpod", value);
+  };
+  const handleSpotify = (value) => {
+    setData({
+      ...data,
+      spotify: value,
+    });
+    getStepTwoData("spotify", value);
+  };
+
   return (
     <>
       <Grid
@@ -29,12 +55,20 @@ const StepTwo = () => {
               What kind of mobile device do you have?{" "}
             </Typography>
             <Stack direction="row" spacing={1}>
-              <Button variant="secondary" color="dark" size="md">
-                Iphone
-              </Button>
-              <Button variant="secondary" color="dark" size="md">
-                Android
-              </Button>
+              <Chip
+                label="IPhone"
+                className={
+                  data.device === "iphone" ? classes.chipClick : classes.chip
+                }
+                onClick={() => handleDevice("iphone")}
+              />
+              <Chip
+                label="Android"
+                className={
+                  data.device === "android" ? classes.chipClick : classes.chip
+                }
+                onClick={() => handleDevice("android")}
+              />
             </Stack>
           </Box>
           <Box>
@@ -42,34 +76,66 @@ const StepTwo = () => {
               Do you own AirPods?
             </Typography>
             <Stack direction="row" spacing={1}>
-              <Button variant="secondary" color="dark" size="md">
-                Npoe
-              </Button>
-              <Button variant="secondary" color="dark" size="lg">
-                AirPods 1
-              </Button>
-              <Button variant="secondary" color="dark" size="lg">
-                AirPods 2
-              </Button>
-              <Button variant="secondary" color="dark" size="lg">
-                AirPods Pro
-              </Button>
+              <Chip
+                label="Nope"
+                className={
+                  data.airpod === "Nope" ? classes.chipClick : classes.chip
+                }
+                onClick={() => handleAirpod("Nope")}
+              />
+              <Chip
+                label="AirPods 1"
+                className={
+                  data.airpod === "AirPods1" ? classes.chipClick : classes.chip
+                }
+                onClick={() => handleAirpod("AirPods1")}
+              />
+              <Chip
+                label="AirPods 2"
+                className={
+                  data.airpod === "AirPods2" ? classes.chipClick : classes.chip
+                }
+                onClick={() => handleAirpod("AirPods2")}
+              />
+              <Chip
+                label="AirPods pro"
+                className={
+                  data.airpod === "AirPodsPro"
+                    ? classes.chipClick
+                    : classes.chip
+                }
+                onClick={() => handleAirpod("AirPodsPro")}
+              />
             </Stack>
           </Box>
           <Box>
             <Typography variant="subtitle1" className={classes.text}>
-              Do you use Spotify?{" "}
+              Do you use Spotify?
             </Typography>
             <Stack direction="row" spacing={1}>
-              <Button variant="secondary" color="dark" size="md">
-                Nope
-              </Button>
-              <Button variant="secondary" color="dark" size="lg">
-                Sometimes
-              </Button>
-              <Button variant="secondary" color="dark" size="md">
-                Chronic
-              </Button>
+              <Chip
+                label="Nope"
+                className={
+                  data.spotify === "nope" ? classes.chipClick : classes.chip
+                }
+                onClick={() => handleSpotify("nope")}
+              />
+              <Chip
+                label="Sometimes"
+                className={
+                  data.spotify === "sometimes"
+                    ? classes.chipClick
+                    : classes.chip
+                }
+                onClick={() => handleSpotify("sometimes")}
+              />
+              <Chip
+                label="Chronic"
+                className={
+                  data.spotify === "chronic" ? classes.chipClick : classes.chip
+                }
+                onClick={() => handleSpotify("chronic")}
+              />
             </Stack>
           </Box>
         </Stack>

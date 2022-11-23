@@ -12,44 +12,55 @@ const UserDetails = ({ email }) => {
   const stepOneRef = useRef();
   const stepTwoRef = useRef();
   const stepThreeRef = useRef();
+
   const getStepOneData = (data) => {
-    console.log({ data });
-    setData({
+    console.log("data n parent", { data });
+    setData((prev) => ({
+      ...prev,
       nickname: data?.nickname,
       username: data?.username,
-    });
+    }));
   };
-  //   const getStepTwoData = (data) => {
-  //     console.log({ data });
-  //     setData({
-  //       nickname: data?.nickname,
-  //       username: data?.username,
-  //     });
-  //   };
+  const getStepTwoData = (key, value) => {
+    console.log({ data });
+    setData((prev) => ({
+      ...prev,
+      [key]: value,
+    }));
+  };
   const getStepThreeData = (stepThreeData) => {
     console.log({ stepThreeData });
-    setData({
-      ...data,
+    setData((prev) => ({
+      ...prev,
       reviews: stepThreeData?.reviews,
       favSong: stepThreeData?.favSong,
-    });
+    }));
   };
 
   const [activeStep, setActiveStep] = React.useState(0);
   const [data, setData] = useState({});
+  const handleNext = () => {
+    setActiveStep((prevActiveStep) => prevActiveStep + 1);
+  };
   const steps = [
     {
       image: "/images/cloud-one.png",
-      formSteps: <StepOne ref={stepOneRef} getStepOneData={getStepOneData} />,
+      formSteps: (
+        <StepOne ref={stepOneRef} getStepOneData={getStepOneData} data={data} />
+      ),
     },
     {
       image: "/images/cloud-two.png",
-      formSteps: <StepTwo />,
+      formSteps: <StepTwo parentData={data} getStepTwoData={getStepTwoData} />,
     },
     {
       image: "/images/cloud-three.png",
       formSteps: (
-        <StepThree ref={stepThreeRef} getStepThreeData={getStepThreeData} />
+        <StepThree
+          ref={stepThreeRef}
+          getStepThreeData={getStepThreeData}
+          data={data}
+        />
       ),
     },
     {
@@ -58,9 +69,6 @@ const UserDetails = ({ email }) => {
     },
   ];
   const maxSteps = steps.length;
-  const handleNext = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep + 1);
-  };
 
   const handleBack = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
