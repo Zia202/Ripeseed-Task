@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import { Box, Typography, MobileStepper, Paper, Grid } from "@mui/material";
+import { Box, MobileStepper, Grid } from "@mui/material";
 import Button from "./CustomComponents/button";
 import StepOne from "./FormSteps/stepOne";
 import StepTwo from "./FormSteps/stepTwo";
@@ -37,7 +37,7 @@ const UserDetails = ({ email }) => {
     }));
   };
 
-  const [activeStep, setActiveStep] = React.useState(0);
+  const [activeStep, setActiveStep] = useState(0);
   const [data, setData] = useState({});
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);

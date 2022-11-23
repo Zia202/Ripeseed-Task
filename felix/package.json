@@ -16,7 +16,10 @@
     "@mui/styles": "^5.10.14",
     "formik": "^2.2.9",
     "react": "^18.2.0",
+    "react-confetti": "^6.1.0",
     "react-dom": "^18.2.0",
+    "react-use": "^17.4.0",
+    "react-use-window-size": "^1.0.1",
     "styled-components": "^5.3.6",
     "yup": "^0.32.11"
   },

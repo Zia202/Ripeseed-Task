@@ -1,7 +1,11 @@
 import React from "react";
 import { Stack, Box, Grid, Typography } from "@mui/material";
 import useStyles from "../../styles/summary.js";
+import useWindowSize from "react-use/lib/useWindowSize";
+import Confetti from "react-confetti";
 const Summary = (props) => {
+  const { width, height } = useWindowSize();
+
   const classes = useStyles();
   return (
     <>
@@ -14,6 +18,7 @@ const Summary = (props) => {
           position: "relative",
         }}
       >
+        <Confetti width={600} height={height} />;
         <Stack
           direction="column"
           spacing={3}
