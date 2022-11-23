@@ -25,6 +25,7 @@ const Summary = (props) => {
           sx={{
             position: "absolute",
             top: "60px",
+            zIndex: "2",
           }}
         >
           <Typography variant="h2" className={classes.primary_text}>

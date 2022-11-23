@@ -15,6 +15,7 @@ const UserDetails = ({ email }) => {
 
   const getStepOneData = (data) => {
     console.log("data n parent", { data });
+
     setData((prev) => ({
       ...prev,
       nickname: data?.nickname,
